@@ -1,43 +1,34 @@
 [![CI](https://github.com/nogibjj/python-template/actions/workflows/cicd.yml/badge.svg)](https://github.com/nogibjj/python-template/actions/workflows/cicd.yml)
-## Template for Python Projects 
+## Python-based Bare-Bones Markov Text Generator ![image](https://github.com/tinayiluo0322/Python-based_Bare-Bones_Markov_Text_Generator-/assets/143360909/cfe200db-61d5-42dc-982c-6a60332fb9b1)
 
-IDS 706 Mini-Project 1
+The python code in this project is for building a Markov language model. Below is a summary of how the model is constructed and how it works:
 
-This Python GitHub template includes a `Makefile`, `requirements.txt`, `.devcontainer`, `.gitignore`, `GitHubActions`, and `Readme`.
+1. **Tokenizing and Preprocessing:**
+   - The code first imports necessary libraries, including `Counter` for counting occurrences and `random` for random selections.
+   - It also imports the Natural Language Toolkit (`nltk`) but comments out the download commands for the "gutenberg" and "punkt" datasets, which are used for natural language processing. You may need to uncomment and run these lines if you haven't already downloaded them.
 
-### Goals
+2. **N-grams Creation:**
+   - The `n_test` function takes a sentence and an integer `n` as input and returns the last `n-1` words in the sentence as an n-gram.
+   - The `n_grams` function creates n-grams (tuples of words) from a given corpus, where `n` specifies the n-gram size.
+   - The `n_grams_count` function counts the occurrences of each n-gram in the provided n-gram model and returns a dictionary with n-grams as keys and their counts as values.
 
-The purpose of this project is to create a Python template to use for later projects in IDS 706 Data Engineering. It sets up an environment on codespaces and uses GitHub Actions to run a Makefile for the following: `make install`, `make test`, `make format`, `make lint`, and `make all`. 
+3. **N-grams Dictionary Creation:**
+   - The `n_grams_dic` function constructs a dictionary where the keys are the last words of n-grams, and the values are the counts of those n-grams. This dictionary is constructed based on a test n-gram provided as input.
 
-### Overview 
-+ `.devcontainer`: define and set up containerized development environments, providing a consistent and isolated workspace for coding and testing applications. It includes a Dockerfile and a devcontainer.json file.
-  + `Dockerfile`: set up a development container for Python and optionally Node.js development within Visual Studio Code.
-  + `devcontainer.json`: configure and define a development container environment for use with Visual Studio Code's Remote - Containers extension. 
+4. **Selecting Next Word:**
+   - The `select_next` function chooses the next word to append to a sentence based on the highest frequency word in the n-grams dictionary.
+   - The `random_select_next` function performs a weighted random selection of the next word from the n-grams dictionary. This function is used when the `randomize` parameter is set to `True`.
 
-+ `.github/workflows`: a special directory used to store workflow configuration files for GitHub Actions(CI/CD). It includes a ci.yml file, which automates the CI process for a code repository.
-  + `ci.yml`: triggers code pushes to the "main" branch, pulls requests to the "main" branch, and allows manual triggering. The workflow includes steps to check out code, install dependencies, perform linting, run tests, and apply code formatting. This automation helps maintain code quality and ensures that code changes are continuously tested and validated.
+5. **Producing N-grams Dictionary:**
+   - The `produce_dictionary` function combines the previous steps to produce an n-grams dictionary for a given sentence, n-gram size (`n`), and corpus.
 
-+ `.gitignore`: specify patterns of files and directories that should be ignored by Git when tracking changes and making commits in a project.
-+ `Makefile`: contains a set of rules that define how to automate common development tasks related to a Python project, including installing dependencies, running tests, and maintaining code formatting and code quality standards in a Python project.
-+ `requirements.txt`: specify Python package dependencies that are required to run the project.
-+ `main.py`: defines a simple function positive_real_number that checks if a given number is greater than 0 and returns True if it is.
-+ `test_main.py`: test the functionality of the positive_real_number function defined in the main.py module.
-  
-### Check Format and Test Approval Image
+6. **Back-off and Recursive Dictionary Generation:**
+   - The `back_off` function implements a back-off strategy. It starts with an n-grams dictionary of size `n`, and if it's empty, it recursively calls itself with a smaller n-gram size until it finds a non-empty dictionary.
 
-+ install code `make install`
-  
-<img width="749" alt="Screen Shot 2023-09-07 at 10 29 08 PM" src="https://github.com/tinayiluo0322/IDS-706-Python-github-template/assets/143360909/48f9566b-1281-4f66-ae7e-a3df52ddb9fa">
+7. **Generating Sentences:**
+   - The `finish_sentence` function generates sentences using the constructed language model.
+   - It starts with an initial sentence, specified n-gram size (`n`), and corpus.
+   - While the last word in the sentence is not a sentence-ending punctuation (".", "?", "!") and the sentence length is less than 10 words, it keeps selecting and appending words to the sentence.
+   - The selection of the next word can be deterministic (`select_next`) or random (`random_select_next`) based on the `randomize` parameter.
 
-+ lint code `make lint`
-+ format code `make format`
-+ test code `make test`
-  
-<img width="1122" alt="Screen Shot 2023-09-07 at 10 25 29 PM" src="https://github.com/tinayiluo0322/IDS-706-Python-github-template/assets/143360909/022fcaaf-b972-4028-9763-be900e20946b">
-
-+ code `make all` executes install, lint, format, and test targets
-  
-<img width="1107" alt="Screen Shot 2023-09-07 at 10 26 06 PM" src="https://github.com/tinayiluo0322/IDS-706-Python-github-template/assets/143360909/c7c28868-6e81-4337-8bea-e2786d4c17bf">
-
-### [References](https://github.com/nogibjj/python-template)
-
+In summary, this code builds a simple Markov language model that can generate sentences based on the statistical patterns of n-grams in a given corpus. It allows for both deterministic and randomized word selection and implements a back-off strategy to handle cases where certain n-grams are not found in the model. The resulting model can be used for text generation tasks, including on diverse news and literature datasets to generate AI-authored content.![image](https://github.com/tinayiluo0322/Python-based_Bare-Bones_Markov_Text_Generator-/assets/143360909/f2cf7f84-683c-4680-a912-9c49c0a20c4b)
