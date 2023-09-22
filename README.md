@@ -1,5 +1,5 @@
 [![CI](https://github.com/nogibjj/python-template/actions/workflows/cicd.yml/badge.svg)](https://github.com/nogibjj/python-template/actions/workflows/cicd.yml)
-## Python-based Bare-Bones Markov Text Generator ![image](https://github.com/tinayiluo0322/Python-based_Bare-Bones_Markov_Text_Generator-/assets/143360909/cfe200db-61d5-42dc-982c-6a60332fb9b1)
+## Python-based Bare-Bones Markov Text Generator 
 
 The python code in this project is for building a Markov language model. Below is a summary of how the model is constructed and how it works:
 
@@ -31,4 +31,4 @@ The python code in this project is for building a Markov language model. Below i
    - While the last word in the sentence is not a sentence-ending punctuation (".", "?", "!") and the sentence length is less than 10 words, it keeps selecting and appending words to the sentence.
    - The selection of the next word can be deterministic (`select_next`) or random (`random_select_next`) based on the `randomize` parameter.
 
-In summary, this code builds a simple Markov language model that can generate sentences based on the statistical patterns of n-grams in a given corpus. It allows for both deterministic and randomized word selection and implements a back-off strategy to handle cases where certain n-grams are not found in the model. The resulting model can be used for text generation tasks, including on diverse news and literature datasets to generate AI-authored content.![image](https://github.com/tinayiluo0322/Python-based_Bare-Bones_Markov_Text_Generator-/assets/143360909/f2cf7f84-683c-4680-a912-9c49c0a20c4b)
+In summary, this code builds a simple Markov language model that can generate sentences based on the statistical patterns of n-grams in a given corpus. It allows for both deterministic and randomized word selection and implements a back-off strategy to handle cases where certain n-grams are not found in the model. The resulting model can be used for text generation tasks, including on diverse news and literature datasets to generate AI-authored content.
