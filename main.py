@@ -4,7 +4,7 @@ Main code
 from collections import Counter
 import random
 
-import nltk
+#import nltk
 
 # nltk.download("gutenberg")
 # nltk.download("punkt")
