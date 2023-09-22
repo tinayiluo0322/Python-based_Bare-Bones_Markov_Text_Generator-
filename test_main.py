@@ -2,14 +2,51 @@
 Test goes here
 
 """
-from main import positive_real_number
+"""Markov Text Generator.
+
+Patrick Wang, 2023
+
+Resources:
+Jelinek 1985 "Markov Source Modeling of Text Generation"
+"""
+
+import nltk
+
+from mtg import finish_sentence
 
 
-def test_positive_real_number():
-    # Test with a positive number
-    result = positive_real_number(5)
-    assert result, "Test failed for the positive number"
+def test_generator():
+    """Test Markov text generator."""
+    corpus = nltk.word_tokenize(nltk.corpus.gutenberg.raw("austen-sense.txt").lower())
+
+    words = finish_sentence(
+        ["she", "was", "not"],
+        3,
+        corpus,
+        randomize=False,
+    )
+    print(words)
+    assert words == [
+        "she",
+        "was",
+        "not",
+        "in",
+        "the",
+        "world",
+        ".",
+    ] or words == [
+        "she",
+        "was",
+        "not",
+        "in",
+        "the",
+        "world",
+        ",",
+        "and",
+        "the",
+        "two",
+    ]
 
 
 if __name__ == "__main__":
-    test_positive_real_number()
+    test_generator()
